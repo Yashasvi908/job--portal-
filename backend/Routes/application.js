@@ -1,6 +1,6 @@
 import express from "express";
 import Application from "../models/Application.js";
-import Job from "../models/Job.js";
+import Job from "../models/job.js";
 import User from "../models/User.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import { upload } from "../middleware/upload.js";

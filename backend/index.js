@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 // Routes
 import authRoutes from "./Routes/auth.js";
 import jobRoutes from "./Routes/jobs.js";
-import Job from "./models/Job.js"; // Ensure model is registered
+import Job from "./models/job.js"; // Ensure model is registered
 import User from "./models/User.js"; // Ensure model is registered
 import applicationRoutes from "./Routes/application.js";
 import userRoutes from "./Routes/user.js";
