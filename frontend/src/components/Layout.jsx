@@ -9,7 +9,7 @@ import AdminDashboard from "../pages/AdminDashboard";
 import Footer from "./Footer";
 import Register from "../pages/Register";
 import PostJob from "../pages/PostJob";
-import Profile from "../pages/Profile";
+import Profile from "../pages/profile";
 
 function Layout() {
   const location = useLocation();
