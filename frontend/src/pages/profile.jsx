@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaEdit, FaCamera, FaSave } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function Profile() {
   const { id } = useParams(); // Get ID from URL if present
@@ -31,11 +32,11 @@ export default function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        let url = "http://localhost:5000/api/profile";
+        let url = `${API_URL}/api/profile`;
 
         // If viewing another user's profile
         if (id) {
-          url = `http://localhost:5000/api/profile/${id}`;
+          url = `${API_URL}/api/profile/${id}`;
           setIsOwnProfile(false);
         }
 
@@ -85,7 +86,7 @@ export default function Profile() {
     if (isEditing) {
       try {
         await axios.put(
-          "http://localhost:5000/api/profile",
+          "${API_URL}/api/profile",
           {
             name,
             headline,

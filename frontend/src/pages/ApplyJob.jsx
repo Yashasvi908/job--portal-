@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { API_URL } from "../config";
 
 export default function ApplyJob() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ export default function ApplyJob() {
       formData.append("jobId", id);
 
       await axios.post(
-        "http://localhost:5000/api/applications",
+        `${API_URL}/api/applications`,
         formData,
         {
           headers: {

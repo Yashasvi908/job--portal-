@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 export default function Jobs() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function Jobs() {
       if (search) params.append("search", search);
       if (locationFilter) params.append("location", locationFilter);
 
-      const res = await axios.get(`http://localhost:5000/api/jobs?${params.toString()}`, {
+      const res = await axios.get(`${API_URL}/api/jobs?${params.toString()}`, {
         headers
       });
       setJobs(res.data);
@@ -62,7 +63,7 @@ export default function Jobs() {
     }
 
     try {
-      const profileRes = await axios.get("http://localhost:5000/api/profile", {
+      const profileRes = await axios.get(`${API_URL}/api/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -135,7 +136,7 @@ export default function Jobs() {
                     {/* Placeholder Logo if none */}
                     <div className="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold text-xl overflow-hidden border border-indigo-100">
                       {job.logo ? (
-                        <img src={`http://localhost:5000/uploads/${job.logo}`} alt="logo" className="w-full h-full object-cover" />
+                        <img src={`${API_URL}/uploads/${job.logo}`} alt="logo" className="w-full h-full object-cover" />
                       ) : (
                         job.company.charAt(0).toUpperCase()
                       )}

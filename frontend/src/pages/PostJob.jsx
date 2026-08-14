@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 const PostJob = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const PostJob = () => {
       formData.append("description", job.description);
       if (job.logo) formData.append("logo", job.logo);
 
-      await axios.post("http://localhost:5000/api/jobs", formData, {
+      await axios.post(`${API_URL}/api/jobs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -24,7 +24,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // CORS
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: process.env.CORS_ORIGIN
+      ? process.env.CORS_ORIGIN.split(",")
+      : ["http://localhost:5173", "http://localhost:5174"],
     credentials: true,
   }),
 );
@@ -85,4 +87,9 @@ mongoose
   .catch((err) => console.log("MongoDB Connection Error:", err));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function AdminDashboard() {
   const [jobs, setJobs] = useState([]);
@@ -21,11 +22,11 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const jobsRes = await axios.get("http://localhost:5000/api/jobs", {
+      const jobsRes = await axios.get(`${API_URL}/api/jobs`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      const appRes = await axios.get("http://localhost:5000/api/applications", {
+      const appRes = await axios.get(`${API_URL}/api/applications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -49,7 +50,7 @@ export default function AdminDashboard() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/api/jobs/${editJob._id}`,
+        `${API_URL}/api/jobs/${editJob._id}`,
         editJob,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -66,7 +67,7 @@ export default function AdminDashboard() {
   const deleteJob = async (id) => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/jobs/${id}`, {
+      await axios.delete(`${API_URL}/api/jobs/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchData();
@@ -186,7 +187,7 @@ export default function AdminDashboard() {
                             <div className="flex gap-2">
                               {app.resume && (
                                 <a
-                                  href={`http://localhost:5000/uploads/${app.resume}`}
+                                  href={`${API_URL}/uploads/${app.resume}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-indigo-600 hover:text-indigo-800 text-sm font-medium border border-indigo-100 px-3 py-1.5 rounded-lg hover:bg-indigo-50 transition"

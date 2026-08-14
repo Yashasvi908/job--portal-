@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function Register() {
   const [role, setRole] = useState("employee");
@@ -13,7 +14,7 @@ export default function Register() {
   const handleRegister = async () => {
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await axios.post(`${API_URL}/api/auth/register`, {
         name, email, password, role
       });
       alert("Registered Successfully ✅");
